@@ -2,71 +2,72 @@
 # stage the file - git add
 # make a comiit
 # push to a github repo
-# operators = ['+', '-', '*', '/']
+@op_arr = ['+', '-', '*', '/', 'quit']
 
 def add(first_val, sec_val)
-  result = first_val + sec_val
-  puts result
+  first_val + sec_val
 end
 
 def subtract(first_val, sec_val)
-  result1 = first_val - sec_val
-  puts result1
+  first_val - sec_val
 end
 
 def multiple(first_val, sec_val)
-  result2 = first_val * sec_val
-  puts result2
+  first_val * sec_val
 end
 
 def divide(first_val, sec_val)
-  result3 = first_val / sec_val
-  puts result3
+  first_val / sec_val
 end
 
 def choice
-puts "Welcome to the Ruby calculator."
-puts "Enter your first number:"
-first_val = gets.to_f
-
+  puts "Welcome to the Ruby calculator"
 # get the first number
-puts "Enter your operator"
-operator = gets.chomp
+  puts "Enter your first number, or type 'q' to exit:"
+  first_val = gets.strip
+  if first_val == "q"
+    exit
+  else
+    first_val = first_val.to_f
+end
 
 # get the operator
-puts "Enter the second number:"
-sec_val = gets.to_f
+  def get_op
+    puts "Enter your operator, or type 'q' to exit:"
+    operator = gets.chomp
+    if @op_arr.include?(operator)
+      return operator
+    else
+      puts "Invalid operator"
+      get_op
+    end
+  end
 
-puts "Calculating..."
+operator = get_op
+
+  # get the second number
+  puts "Enter the second number, or type 'q' to exit:"
+  sec_val = gets.to_f
+
+  puts "Calculating..."
+
 
   case operator
     when "+"
-      add(first_val, sec_val)
+      result = add(first_val, sec_val)
     when "-"
-      subtract(first_val, sec_val)
+      result = subtract(first_val, sec_val)
     when "*"
-      multiple(first_val, sec_val)
+      result = multiple(first_val, sec_val)
     when "/"
-      divide(first_val, sec_val)
-    else
-      error_mes
+      result = divide(first_val, sec_val)
   end
+    puts "Your result is: #{first_val} #{operator} #{sec_val} = #{result}"
+    choice
 end
 
-def error_mes
-  puts "Try again..."
-  choice
-end
-
+# def error_mes
+#   puts "Try again..."
+#   choice
+# end
 choice
-
-# get the second number
-
-
-
-
-
-# figure out how to do the math on the two numbers
-# output the result to the user
-
-# Do all the bous problems
